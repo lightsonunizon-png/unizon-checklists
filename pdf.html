@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <base target="_top">
+
+  <meta charset="UTF-8">
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      padding:20px;
+      background:#f4f7fb;
+      font-family:Arial, sans-serif;
+      font-size:14px;
+      color:#333;
+    }
+
+    .container{
+      max-width:1250px;
+      margin:auto;
+      background:#fff;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.08);
+    }
+
+    .logo-container{
+      text-align:center;
+      margin-bottom:15px;
+    }
+
+    .logo-container img{
+      max-width:220px;
+      height:auto;
+    }
+
+    h1{
+      text-align:center;
+      color:#2a9d8f;
+      font-family:Arial, sans-serif;
+      font-size:24px;
+      font-weight:bold;
+      margin-bottom:25px;
+    }
+
+    .top-fields{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 1fr;
+      gap:20px;
+      margin-bottom:25px;
+    }
+
+    .field-group label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .pdf-input{
+      width:100%;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      min-height:42px;
+      background:#fff;
+      word-break:break-word;
+    }
+
+    .instruction-box{
+      background:#eefaf8;
+      border-left:5px solid #2a9d8f;
+      padding:15px;
+      margin-bottom:25px;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .rating-scale{
+      margin-top:15px;
+      line-height:1.8;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .scale-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      margin-top:12px;
+      align-items:center;
+    }
+
+    .scale-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+
+    .section-title{
+      color:#2a9d8f;      /* same as h1 */
+      background:#none;    /* remove dark bar */
+      padding:0;
+      margin-top:30px;
+      margin-bottom:10px;
+      font-size:18px;
+      font-weight:bold;
+      letter-spacing:0.3px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      table-layout:fixed;
+    }
+
+    th,
+    td{
+      border:1px solid #ddd;
+      padding:10px;
+      text-align:center;
+      vertical-align:middle;
+      font-size:14px;
+      word-wrap:break-word;
+    }
+
+    th{
+      background:#f1f5fa;
+      font-weight:bold;
+    }
+
+    th.skill-col{
+      width:55%;
+    }
+
+    td:first-child{
+      text-align:left;
+      font-weight:500;
+      line-height:1.5;
+    }
+
+    .radio{
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .textarea-box{
+      margin-top:25px;
+    }
+
+    .textarea-box label{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .pdf-textarea{
+      width:100%;
+      min-height:100px;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      background:#fff;
+      white-space:pre-wrap;
+    }
+
+    .signature-section{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+
+    .footer{
+      margin-top:40px;
+      text-align:center;
+      color:#666;
+      font-size:12px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- LOGO -->
+
+    <div class="logo-container">
+
+      <? if(logoBase64){ ?>
+
+        <img src="<?= logoBase64 ?>">
+
+      <? } ?>
+
+    </div>
+
+    <h1>Medical Assistant Skills Checklist</h1>
+
+    <!-- TOP FIELDS -->
+
+    <div class="top-fields">
+
+      <div class="field-group">
+        <label>Full Name</label>
+        <div class="pdf-input"><?= fullName ?></div>
+      </div>
+
+      <div class="field-group">
+        <label>Last 4 of SSN</label>
+        <div class="pdf-input"><?= ssn ?></div>
+      </div>
+
+      <div class="field-group">
+        <label>Email Address</label>
+        <div class="pdf-input"><?= email ?></div>
+      </div>
+
+      <div class="field-group">
+        <label>Date</label>
+        <div class="pdf-input"><?= date ?></div>
+      </div>
+
+    </div>
+
+    <!-- CERTIFICATION -->
+
+    <div class="instruction-box">
+
+      <div style="display:flex; align-items:flex-start; gap:10px;">
+
+        <span style="font-size:18px;">☑</span>
+
+        <div>
+
+          <strong>Certification Statement:</strong><br><br>
+
+          I hereby certify that ALL information I have provided on this skills checklist and all other documentation is true and accurate. I understand and acknowledge that any misrepresentation or omission may result in disqualification from employment and/or immediate termination.
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SCALE -->
+
+    <div class="rating-scale">
+
+      Proficiency Scale
+
+      <div class="scale-row">
+
+        <div class="scale-item">○ 1 = No Experience</div>
+        <div class="scale-item">○ 2 = Need Training</div>
+        <div class="scale-item">○ 3 = Able to Perform with Supervision</div>
+        <div class="scale-item">○ 4 = Able to Perform Independently</div>
+
+      </div>
+
+    </div>
+
+    <!-- GENERAL DUTIES -->
+
+    <div class="section-title">General Duties</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th rowspan="2" class="skill-col">
+            Skill
+          </th>
+
+          <th colspan="4">
+            Proficiency Scale
+          </th>
+
+        </tr>
+
+        <tr>
+
+          <th>No Experience<br><br>1</th>
+          <th>Need Training<br><br>2</th>
+          <th>Able to Perform with Supervision<br><br>3</th>
+          <th>Able to Perform Independently<br><br>4</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < generalSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= generalSkills[i].name ?></td>
+
+          <td class="radio"><?= generalSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= generalSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= generalSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= generalSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- CARDIAC -->
+
+    <div class="section-title">Cardiac</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < cardiacSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= cardiacSkills[i].name ?></td>
+
+          <td class="radio"><?= cardiacSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= cardiacSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= cardiacSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= cardiacSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- VASCULAR -->
+
+    <div class="section-title">Vascular</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < vascularSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= vascularSkills[i].name ?></td>
+
+          <td class="radio"><?= vascularSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= vascularSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= vascularSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= vascularSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- PULMONARY -->
+
+    <div class="section-title">Pulmonary</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < pulmonarySkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= pulmonarySkills[i].name ?></td>
+
+          <td class="radio"><?= pulmonarySkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= pulmonarySkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= pulmonarySkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= pulmonarySkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- NEUROLOGY -->
+
+    <div class="section-title">Neurology</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < neuroSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= neuroSkills[i].name ?></td>
+
+          <td class="radio"><?= neuroSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= neuroSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= neuroSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= neuroSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- ORTHOPEDIC -->
+
+    <div class="section-title">Orthopedic</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < orthoSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= orthoSkills[i].name ?></td>
+
+          <td class="radio"><?= orthoSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= orthoSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= orthoSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= orthoSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- GI -->
+
+    <div class="section-title">Gastrointestinal</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < giSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= giSkills[i].name ?></td>
+
+          <td class="radio"><?= giSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= giSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= giSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= giSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- MEDICATION -->
+
+    <div class="section-title">Medication Administration</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < medicationSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= medicationSkills[i].name ?></td>
+
+          <td class="radio"><?= medicationSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= medicationSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= medicationSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= medicationSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- AGE -->
+
+    <div class="section-title">Age Specific Competencies</div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th class="skill-col">Skill</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <? for(var i = 0; i < ageSkills.length; i++){ ?>
+
+        <tr>
+
+          <td><?= ageSkills[i].name ?></td>
+
+          <td class="radio"><?= ageSkills[i].value == "1" ? "◉" : "○" ?></td>
+          <td class="radio"><?= ageSkills[i].value == "2" ? "◉" : "○" ?></td>
+          <td class="radio"><?= ageSkills[i].value == "3" ? "◉" : "○" ?></td>
+          <td class="radio"><?= ageSkills[i].value == "4" ? "◉" : "○" ?></td>
+
+        </tr>
+
+        <? } ?>
+
+      </tbody>
+
+    </table>
+
+    <!-- ADDITIONAL -->
+
+    <div class="textarea-box">
+
+      <label>Please List Any Additional Skills</label>
+
+      <div class="pdf-textarea">
+        <?= additionalSkills ?>
+      </div>
+
+    </div>
+
+    <div class="textarea-box">
+
+      <label>Additional Training</label>
+
+      <div class="pdf-textarea">
+        <?= additionalTraining ?>
+      </div>
+
+    </div>
+
+    <!-- SIGNATURE -->
+
+    <div class="signature-section">
+
+      <div class="field-group">
+        <label>Signature</label>
+
+        <div class="pdf-input">
+          <?= signature ?>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+
+      Submitted On:
+      <?= submittedOn ?>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

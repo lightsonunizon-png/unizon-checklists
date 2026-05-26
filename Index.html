@@ -1,0 +1,846 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Medical Assistant Skills Checklist</title>
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      padding:20px;
+      background:#f4f7fb;
+      font-family:Arial, sans-serif;
+      font-size:14px;
+      color:#333;
+    }
+
+    .container{
+      max-width:1250px;
+      margin:auto;
+      background:#fff;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.08);
+    }
+
+    .logo-container{
+      text-align:center;
+      margin-bottom:15px;
+    }
+
+    .logo-container img{
+      max-width:220px;
+      height:auto;
+    }
+
+    h1{
+      text-align:center;
+      color:#2a9d8f;
+      font-size:24px;
+      font-weight:bold;
+      margin-bottom:25px;
+    }
+
+    .top-fields{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 1fr;
+      gap:20px;
+      margin-bottom:25px;
+    }
+
+    .field-group label{
+      display:block;
+      margin-bottom:6px;
+      font-weight:bold;
+    }
+
+    .field-group input{
+      width:100%;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      font-size:14px;
+    }
+
+    .instruction-box{
+      background:#eefaf8;
+      border-left:5px solid #2a9d8f;
+      padding:15px;
+      margin-bottom:25px;
+      line-height:1.6;
+    }
+
+    .rating-scale{
+      margin-top:15px;
+      line-height:1.8;
+      font-weight:bold;
+    }
+
+    .scale-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      margin-top:12px;
+      align-items:center;
+    }
+
+    .scale-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+
+    .section-title{
+      background:#2a9d8f;
+      color:#fff;
+      padding:12px;
+      margin-top:30px;
+      border-radius:5px;
+      font-size:16px;
+      font-weight:bold;
+    }
+
+    .table-wrapper{
+      width:100%;
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      table-layout:fixed;
+    }
+
+    th,
+    td{
+      border:1px solid #ddd;
+      padding:10px;
+      text-align:center;
+      vertical-align:middle;
+      word-wrap:break-word;
+      font-size:13px;
+    }
+
+    th{
+      background:#f1f5fa;
+      font-weight:bold;
+    }
+
+    th.skill-col{
+      width:55%;
+    }
+
+    td:first-child{
+      text-align:left;
+      font-weight:500;
+      line-height:1.5;
+    }
+
+    input[type="radio"]{
+      transform:scale(1.1);
+      cursor:pointer;
+    }
+
+    .textarea-box{
+      margin-top:25px;
+    }
+
+    .textarea-box label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+
+    textarea{
+      width:100%;
+      min-height:100px;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      resize:vertical;
+      font-size:14px;
+    }
+
+    .signature-section{
+      margin-top:30px;
+    }
+
+    .submit-btn{
+      width:100%;
+      margin-top:30px;
+      padding:14px;
+      border:none;
+      border-radius:6px;
+      background:#2a9d8f;
+      color:#fff;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:15px;
+      font-weight:bold;
+    }
+
+    .submit-btn:hover{
+      background:#1f7f73;
+    }
+
+    .loading{
+      display:none;
+      text-align:center;
+      margin-top:20px;
+      font-weight:bold;
+      color:#2a9d8f;
+    }
+
+    @media(max-width:900px){
+
+      .top-fields{
+        grid-template-columns:1fr 1fr;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .top-fields{
+        grid-template-columns:1fr;
+      }
+
+      table,
+      th,
+      td{
+        font-size:12px;
+      }
+
+      .container{
+        padding:20px;
+      }
+
+      .scale-row{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- LOGO -->
+
+    <div class="logo-container">
+
+      <img src="https://unizonhealth.com/data/nnlogo.png" alt="Unizon Health Logo">
+
+    </div>
+
+    <h1>Medical Assistant Skills Checklist</h1>
+
+    <form id="skillsForm">
+
+      <!-- TOP FIELDS -->
+
+      <div class="top-fields">
+
+        <div class="field-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName" required>
+        </div>
+
+        <div class="field-group">
+          <label>Last 4 of SSN</label>
+          <input type="text" id="ssn" maxlength="4" required>
+        </div>
+
+        <div class="field-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+
+        <div class="field-group">
+          <label>Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+      </div>
+
+      <!-- CERTIFICATION -->
+
+      <div class="instruction-box">
+
+        <div style="display:flex; align-items:flex-start; gap:10px;">
+
+          <input 
+            type="checkbox"
+            id="certification"
+            required
+            style="
+              margin-top:4px;
+              width:18px;
+              height:18px;
+              cursor:pointer;
+            "
+          >
+
+          <div>
+
+            <strong>Certification Statement:</strong><br><br>
+
+            I hereby certify that ALL information I have provided on this skills checklist and all other documentation is true and accurate.
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- SCALE -->
+
+      <div class="rating-scale">
+
+        Proficiency Scale
+
+        <div class="scale-row">
+
+          <label class="scale-item">
+            <input type="radio" disabled>
+            1 = No Experience
+          </label>
+
+          <label class="scale-item">
+            <input type="radio" disabled>
+            2 = Need Training
+          </label>
+
+          <label class="scale-item">
+            <input type="radio" disabled>
+            3 = Able to Perform with Supervision
+          </label>
+
+          <label class="scale-item">
+            <input type="radio" disabled>
+            4 = Able to Perform Independently
+          </label>
+
+        </div>
+
+      </div>
+
+      <!-- GENERAL DUTIES -->
+
+      <div class="section-title">General Duties</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="generalBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- CARDIAC -->
+
+      <div class="section-title">Cardiac</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="cardiacBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- VASCULAR -->
+
+      <div class="section-title">Vascular</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="vascularBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- PULMONARY -->
+
+      <div class="section-title">Pulmonary</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="pulmonaryBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- NEUROLOGY -->
+
+      <div class="section-title">Neurology</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="neuroBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- ORTHOPEDIC -->
+
+      <div class="section-title">Orthopedic</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="orthoBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- GI -->
+
+      <div class="section-title">Gastrointestinal</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="giBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- MEDICATION -->
+
+      <div class="section-title">Medication Administration</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="medsBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- AGE -->
+
+      <div class="section-title">Age Specific Competencies</div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th class="skill-col">Skill</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+
+          <tbody id="ageBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <!-- ADDITIONAL -->
+
+      <div class="textarea-box">
+
+        <label>Please List Any Additional Skills</label>
+
+        <textarea id="additionalSkills"></textarea>
+
+      </div>
+
+      <div class="textarea-box">
+
+        <label>Additional Training</label>
+
+        <textarea id="additionalTraining"></textarea>
+
+      </div>
+
+      <!-- SIGNATURE -->
+
+      <div class="signature-section">
+
+        <div class="field-group">
+          <label>Signature</label>
+          <input type="text" id="signature" required>
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+
+      <button type="submit" class="submit-btn">
+        Submit Checklist
+      </button>
+
+      <div class="loading" id="loadingText">
+        Submitting form...
+      </div>
+
+    </form>
+
+  </div>
+
+  <script>
+
+    // ======================================
+    // GENERATE TABLE ROWS
+    // ======================================
+
+    function generateRows(data, sectionName, targetId){
+
+      let rows = "";
+
+      data.forEach((item, index)=>{
+
+        rows += `
+          <tr>
+
+            <td>${item}</td>
+
+            <td>
+              <input type="radio" name="${sectionName + index}" value="1" required>
+            </td>
+
+            <td>
+              <input type="radio" name="${sectionName + index}" value="2">
+            </td>
+
+            <td>
+              <input type="radio" name="${sectionName + index}" value="3">
+            </td>
+
+            <td>
+              <input type="radio" name="${sectionName + index}" value="4">
+            </td>
+
+          </tr>
+        `;
+
+      });
+
+      document.getElementById(targetId).innerHTML = rows;
+
+    }
+
+    // ======================================
+    // DATA
+    // ======================================
+
+    const generalDuties = [
+      "Awareness of HCAHPS",
+      "Administrative procedures",
+      "MDS Coordinator",
+      "Admit/discharge patients",
+      "Blood glucose monitoring",
+      "Coordinate scheduling",
+      "Documentation",
+      "Dressing changes",
+      "Familiarity with advanced directives",
+      "HIPAA regulations",
+      "Isolation techniques",
+      "Observe for adverse medication reaction",
+      "Alert licensed staff of medication reaction",
+      "Patient education",
+      "Position/transfer patients",
+      "Prepare reports",
+      "Pulse oximetry",
+      "Lab draw",
+      "Screen/direct provider calls",
+      "Screen/direct patient calls",
+      "Urine dipstick",
+      "Universal precautions",
+      "Vital signs",
+      "Wound care"
+    ];
+
+    const cardiacSkills = [
+      "Assist with emergency",
+      "Perform 12 lead EKG",
+      "Use of cardiac monitor"
+    ];
+
+    const vascularSkills = [
+      "Apply/monitor noninvasive BP monitor",
+      "Intake and output",
+      "Discontinue peripheral IV",
+      "Manual BP",
+      "Phlebotomy draws"
+    ];
+
+    const pulmonarySkills = [
+      "Apply nasal cannula/face mask",
+      "Incentive spirometry",
+      "O2 saturation monitor"
+    ];
+
+    const neuroSkills = [
+      "Assist with lumbar puncture",
+      "Neurological evaluation",
+      "Seizure precautions"
+    ];
+
+    const orthoSkills = [
+      "Cast care",
+      "Crutch walking",
+      "Traction"
+    ];
+
+    const giSkills = [
+      "Assist with feeding",
+      "Nutritional evaluation",
+      "Instruct/obtain clean catch urine",
+      "Straight/Foley catheter female",
+      "Straight/Foley catheter male"
+    ];
+
+    const medicationSkills = [
+      "Vitamins, minerals, herbs",
+      "Antibiotics",
+      "Antifungal",
+      "Antiviral",
+      "Psychotropic",
+      "Ophthalmic medications",
+      "Aural medications",
+      "Respiratory system medications",
+      "Cardiovascular system medications",
+      "Gastrointestinal system medications",
+      "Urinary system medications",
+      "Reproductive system medications",
+      "Endocrine system medications",
+      "Musculoskeletal system medications",
+      "Nervous system medications",
+      "Immunizations",
+      "Intramuscular (IM)",
+      "Subcutaneous (SQ)",
+      "Intradermal",
+      "Z-track"
+    ];
+
+    const ageSkills = [
+      "Newborn/neonate (birth-30 days)",
+      "Infant (31 days-1 year)",
+      "Toddler (ages 2-3 years)",
+      "Preschool (ages 4-5 years)",
+      "School age (ages 6-12 years)",
+      "Adolescent (ages 13-21 years)",
+      "Young adult (ages 22-39 years)",
+      "Adult (ages 40-64 years)",
+      "Older adult (ages 65-79 years)",
+      "Elderly (ages 80+ years)"
+    ];
+
+    // ======================================
+    // GENERATE TABLES
+    // ======================================
+
+    generateRows(generalDuties, "general", "generalBody");
+    generateRows(cardiacSkills, "cardiac", "cardiacBody");
+    generateRows(vascularSkills, "vascular", "vascularBody");
+    generateRows(pulmonarySkills, "pulmonary", "pulmonaryBody");
+    generateRows(neuroSkills, "neuro", "neuroBody");
+    generateRows(orthoSkills, "ortho", "orthoBody");
+    generateRows(giSkills, "gi", "giBody");
+    generateRows(medicationSkills, "meds", "medsBody");
+    generateRows(ageSkills, "age", "ageBody");
+
+    // ======================================
+    // FORM SUBMIT
+    // ======================================
+
+    const form = document.getElementById("skillsForm");
+
+    form.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      if(!form.checkValidity()){
+
+        form.reportValidity();
+        return;
+
+      }
+
+      document.getElementById("loadingText").style.display = "block";
+
+      const formData = {
+
+        fullName: document.getElementById("fullName").value,
+        ssn: document.getElementById("ssn").value,
+        email: document.getElementById("email").value,
+        date: document.getElementById("date").value,
+        additionalSkills: document.getElementById("additionalSkills").value,
+        additionalTraining: document.getElementById("additionalTraining").value,
+        signature: document.getElementById("signature").value,
+        ratings: {}
+
+      };
+
+      // GET RADIO VALUES
+
+      // GET ALL SELECTED RADIO VALUES
+    const selectedRadios = document.querySelectorAll(
+      'tbody input[type="radio"]:checked'
+    );
+
+    selectedRadios.forEach((radio) => {
+      formData[radio.name] = radio.value;
+    });
+      console.log("FORM DATA SENT:", formData);
+
+      // SEND TO APPS SCRIPT
+
+      google.script.run
+
+        .withSuccessHandler(function(response){
+
+          document.getElementById("loadingText").style.display = "none";
+
+          alert("Checklist Submitted Successfully!");
+
+          form.reset();
+
+          console.log(response);
+
+        })
+
+        .withFailureHandler(function(error){
+
+          document.getElementById("loadingText").style.display = "none";
+
+          alert("Submission Failed");
+
+          console.error(error);
+
+        })
+
+        .submitForm(formData);
+
+    });
+
+  </script>
+
+</body>
+
+</html>
